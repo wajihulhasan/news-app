@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import {
     Link
-  } from "react-router-dom";
+} from "react-router-dom";
+import LoadingBar from 'react-top-loading-bar'
 
 
 
 
 export default class NavBar extends Component {
     render() {
+
         return (
-            <div>
+                <div>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <div className="container-fluid">
                         <Link className="navbar-brand" to="/">NEWS</Link>

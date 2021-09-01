@@ -16,53 +16,43 @@ export class News extends Component {
         pageSize: PropTypes.number,
         category: PropTypes.string,
     }
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             articles: [],
             loading: true,
             page: 1,
             pageSize: 9,
-            totalArticles:0
+            totalArticles:0,
 
         }
     }
 
     async updateNews() {
         let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=f4cd4b0d4cc14c8782a447619e235054&page=${this.state.page}&pageSize=${this.state.pageSize}`;
+        
         let data = await fetch(url);
         let parseData = await data.json();
+        
         this.setState({
             totalArticles: parseData.totalResults,
             articles: this.state.articles.concat(parseData.articles),
         });
-
+        
     }
     async componentDidMount() {
         let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=f4cd4b0d4cc14c8782a447619e235054&pageSize=${this.state.pageSize}`;
+        this.props.setProgress(10);
         let data = await fetch(url);
         let parseData = await data.json();
+        this.props.setProgress(50);
         this.setState({
             articles: parseData.articles,
             totalArticles: parseData.totalResults,
             loading: false,
         });
-    }
-    nextPageStories = async () => {
+        this.props.setProgress(100);
 
-        if (!(this.state.page + 1 > Math.ceil((this.state.totalArticles / this.state.pageSize)))) {
-            this.setState({
-                page: this.state.page + 1,
-            }, () => { this.updateNews() });
-
-        }
-
-    }
-
-    prevPageStories = async () => {
-        this.setState({
-            page: this.state.page - 1,
-        }, () => { this.updateNews() });
     }
 
     fetchMoreData = async () => {
