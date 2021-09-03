@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import loading from '../logo.gif'
-export default class logo extends Component {
-    render() {
+
+
+export default function logo(){
         return (
             <div className="text-center my-3">
                 <img src={loading} alt="loading" />
             </div>
         )
-    }
 }

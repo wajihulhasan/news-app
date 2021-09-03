@@ -1,18 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
     Link
 } from "react-router-dom";
-import LoadingBar from 'react-top-loading-bar'
 
 
 
 
-export default class NavBar extends Component {
-    render() {
-
+export default function NavBar(){
         return (
                 <div>
-                <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
                     <div className="container-fluid">
                         <Link className="navbar-brand" to="/">NEWS</Link>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,5 +49,4 @@ export default class NavBar extends Component {
                 </nav>
             </div>
         )
-    }
 }
